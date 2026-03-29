@@ -1,0 +1,35 @@
+{
+  "inbounds": [
+    {
+      "port": 8080,
+      "listen": "0.0.0.0",
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "c4d5e6f7-a8b9-4321-dcba-fedcba987654",
+            "level": 0
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/flycloud"
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {}
+    }
+  ]
+}
+ملف Dockerfile:
+FROM teddysun/v2ray:latest
+EXPOSE 8080
+COPY config.json /etc/v2ray/config.json
+CMD ["v2ray", "run", "-config", "/etc/v2ray/config.json"]
